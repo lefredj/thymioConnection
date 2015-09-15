@@ -1,0 +1,36 @@
+<!DOCTYPE aesl-source>
+<network>
+<!--list of global events-->
+<event size="2" name="SetSpeed"/>
+<event size="3" name="SetColor"/>
+<event size="1" name="SetRightSpeed"/>
+<event size="1" name="SetLeftSpeed"/>
+
+
+<!--list of constants-->
+
+
+<!--show keywords state-->
+<keywords flag="true"/>
+
+
+<!--node thymio-II-->
+<node nodeId="1" name="thymio-II">
+onevent SetSpeed
+motor.left.target = event.args[0]
+motor.right.target = event.args[1]
+
+onevent SetRightSpeed
+motor.right.target = event.args[0]
+
+onevent SetLeftSpeed
+motor.left.target = event.args[0]
+
+onevent SetColor
+call leds.top(event.args[0], event.args[1], event.args[2])
+call leds.bottom.left(event.args[0], event.args[1], event.args[2])
+call leds.bottom.right(event.args[0], event.args[1], event.args[2])
+</node>
+
+
+</network>
